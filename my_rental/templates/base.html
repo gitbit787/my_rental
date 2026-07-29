@@ -31,25 +31,32 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Quick Pay</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Lease Application</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Login</a>
-                </li>
-            </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Quick Pay</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Lease Application</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Login</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
     {% block content %}{% endblock %}
+    
+    <footer class="bg-light text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; {% now "Y" %} MyRental. All rights reserved.</p>
+            <p class="mb-0 text-muted small">Your trusted rental management solution</p>
+        </div>
+    </footer>
 </body>
 </html>
