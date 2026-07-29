@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .auth-container h2 {
+            color: #09af5c;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #09af5c;
+            border-color: #09af5c;
+        }
+        .btn-primary:hover {
+            background-color: #089a4f;
+            border-color: #089a4f;
+        }
+    </style>
+    
+    <div class="auth-container">
+        <h2>Login</h2>
+        
+        {% if error_message %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ error_message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="text-danger small">
+                    {% for error in field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+        
+        <p class="text-center mt-3 mb-0">
+            Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>
+        </p>
+    </div>
+{% endblock %}
