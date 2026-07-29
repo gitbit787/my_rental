@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            color: #09af5c;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #09af5c;
+            padding-bottom: 15px;
+        }
+        .profile-section {
+            margin-bottom: 25px;
+        }
+        .profile-section h5 {
+            color: #09af5c;
+            margin-bottom: 15px;
+        }
+        .info-row {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .info-label {
+            font-weight: bold;
+            width: 150px;
+            color: #333;
+        }
+        .info-value {
+            color: #555;
+        }
+        .no-profile {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+        }
+    </style>
+    
+    <div class="profile-container">
+        {% if renter %}
+            <h2 class="profile-header">User Profile</h2>
+            
+            <div class="profile-section">
+                <h5>Personal Information</h5>
+                <div class="info-row">
+                    <span class="info-label">Name:</span>
+                    <span class="info-value">{{ renter.first_name }} {{ renter.last_name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ renter.email }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone:</span>
+                    <span class="info-value">{{ renter.phone }}</span>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h5>Address Information</h5>
+                <div class="info-row">
+                    <span class="info-label">Address:</span>
+                    <span class="info-value">{{ renter.address }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Unit:</span>
+                    <span class="info-value">{{ renter.unit }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">City:</span>
+                    <span class="info-value">{{ renter.city }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">State:</span>
+                    <span class="info-value">{{ renter.state }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">ZIP Code:</span>
+                    <span class="info-value">{{ renter.zip_code }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Country:</span>
+                    <span class="info-value">{{ renter.country }}</span>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h5>Account Information</h5>
+                <div class="info-row">
+                    <span class="info-label">Username:</span>
+                    <span class="info-value">{{ request.user.username }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Member Since:</span>
+                    <span class="info-value">{{ renter.created_at|date:"F d, Y" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Last Updated:</span>
+                    <span class="info-value">{{ renter.updated_at|date:"F d, Y" }}</span>
+                </div>
+            </div>
+        {% else %}
+            <div class="no-profile">
+                <h3>No Profile Found</h3>
+                <p>Your profile information is not available. Please contact support.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
