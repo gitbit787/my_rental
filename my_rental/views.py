@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import CustomSignupForm
 from .models import Renter
@@ -64,5 +64,6 @@ def profile(request):
         renter = None
     return render(request, 'profile.html', {'renter': renter})
 
-"""Debug: def home(request):
-    return HttpResponse("Hello World")"""
+def logout_view(request):
+    logout(request)
+    return redirect('home')
