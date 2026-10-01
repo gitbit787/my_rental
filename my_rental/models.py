@@ -37,4 +37,4 @@ class Property(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{str(self.property_id)}:{self.name}"
+        return f"{self.name}"
