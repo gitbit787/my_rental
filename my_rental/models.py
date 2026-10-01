@@ -20,4 +20,21 @@ class Renter(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{str(self.renter_id)}:{self.first_name} {self.last_name}"
+        return f"{str(self.renter_id)}:{self.user if self.user else 'No User'}"
+
+class Property(models.Model):
+    property_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    unit = models.CharField(max_length=1)
+    city = models.CharField(max_length=200)
+    state = models.CharField(max_length=200)
+    zip_code = models.CharField(max_length=200)
+    country = models.CharField(max_length=200)
+    available = models.BooleanField(default=True)
+    rent = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"{str(self.property_id)}:{self.name}"
