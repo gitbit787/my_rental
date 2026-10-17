@@ -47,6 +47,7 @@ def signup(request):
                 country=selected_property.country
             )
             login(request, user)
+            Property.objects.filter(property_id=selected_property.property_id).update(available=False)
             return redirect('home')
     else:
         form = CustomSignupForm()
