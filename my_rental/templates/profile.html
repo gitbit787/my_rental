@@ -47,50 +47,59 @@
     </style>
     
     <div class="profile-container">
-        {% if renter %}
+        {% if tenant %}
             <h2 class="profile-header">User Profile</h2>
             
             <div class="profile-section">
                 <h5>Personal Information</h5>
                 <div class="info-row">
                     <span class="info-label">Name:</span>
-                    <span class="info-value">{{ renter.first_name }} {{ renter.last_name }}</span>
+                    <span class="info-value">{{ tenant.first_name }} {{ tenant.last_name }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Email:</span>
-                    <span class="info-value">{{ renter.email }}</span>
+                    <span class="info-value">{{ tenant.email }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Phone:</span>
-                    <span class="info-value">{{ renter.phone }}</span>
+                    <span class="info-value">{{ tenant.phone }}</span>
                 </div>
+            </div>
+            {% if rent %}
+            <div class="profile-section">
+                <h5>Rent Amount</h5>
+                <div class="info-row">
+                    <span class="info-label">Monthly Rent:</span>
+                    <span class="info-value">${{ rent }}</span>
+                </div>
+            {% endif %}
             </div>
             
             <div class="profile-section">
                 <h5>Address Information</h5>
                 <div class="info-row">
                     <span class="info-label">Address:</span>
-                    <span class="info-value">{{ renter.address }}</span>
+                    <span class="info-value">{{ tenant.address }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Unit:</span>
-                    <span class="info-value">{{ renter.unit }}</span>
+                    <span class="info-value">{{ tenant.unit }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">City:</span>
-                    <span class="info-value">{{ renter.city }}</span>
+                    <span class="info-value">{{ tenant.city }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">State:</span>
-                    <span class="info-value">{{ renter.state }}</span>
+                    <span class="info-value">{{ tenant.state }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">ZIP Code:</span>
-                    <span class="info-value">{{ renter.zip_code }}</span>
+                    <span class="info-value">{{ tenant.zip_code }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Country:</span>
-                    <span class="info-value">{{ renter.country }}</span>
+                    <span class="info-value">{{ tenant.country }}</span>
                 </div>
             </div>
             
@@ -102,11 +111,11 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">Member Since:</span>
-                    <span class="info-value">{{ renter.created_at|date:"F d, Y" }}</span>
+                    <span class="info-value">{{ tenant.created_at|date:"F d, Y" }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Last Updated:</span>
-                    <span class="info-value">{{ renter.updated_at|date:"F d, Y" }}</span>
+                    <span class="info-value">{{ tenant.updated_at|date:"F d, Y" }}</span>
                 </div>
             </div>
         {% else %}
@@ -114,6 +123,7 @@
                 <h3>No Profile Found</h3>
                 <p>Your profile information is not available. Please contact support.</p>
             </div>
+
         {% endif %}
     </div>
 {% endblock %}
