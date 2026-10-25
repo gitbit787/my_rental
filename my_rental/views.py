@@ -73,11 +73,18 @@ def login_view(request):
 
 @login_required
 def profile(request):
+    content = {}
     try:
-        renter = Renter.objects.get(user=request.user)
+        tenant = Renter.objects.get(user=request.user)
+        property = Property.objects.filter(address=tenant.address, unit=tenant.unit).first()
+        content = {
+            'tenant': tenant,
+            'rent': property.rent if property else 'n/a'
+        }
     except Renter.DoesNotExist:
-        renter = None
-    return render(request, 'profile.html', {'renter': renter})
+        tenant = None
+        property = None
+    return render(request, 'profile.html', content)
 
 def logout_view(request):
     logout(request)
