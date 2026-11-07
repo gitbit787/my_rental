@@ -14,25 +14,32 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-# load the environment variables through .env file
-load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Define the environment files.
+ENV_PROD = BASE_DIR / '.env'
+ENV_DEV = BASE_DIR / '.env_dev'
+
+# Load the environment variables through .env file
+LOADED_ENV_TYPE = load_dotenv(dotenv_path=ENV_PROD) or load_dotenv(dotenv_path=ENV_DEV)
+if not LOADED_ENV_TYPE:
+    raise Exception('Environment type not found')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Debug: SECRET_KEY = 'django-insecure-*$a8@chmk@u@1#0koudct14ycsixjjk&866bt+duhn^$o$4n9%'
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'ecfbaact620j(c+asgi9y2_p05_5n-t42medpesg%rd2^1l#i5')
+SECRET_KEY_FALLBACKS = [
+    'django-insecure-*$a8@chmk@u@1#0koudct14ycsixjjk&866bt+duhn^$o$4n9%',
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Debug: DEBUG = True
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
