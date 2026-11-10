@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django_ratelimit.decorators import ratelimit
 from .forms import CustomSignupForm
 from .models import Renter, Property
 
@@ -52,6 +53,7 @@ def signup(request):
         form = CustomSignupForm()
     return render(request, 'signup.html', {'form': form, 'properties_data': properties_data})
 
+@ratelimit(key='ip', rate='5/m', method='POST')
 def login_view(request):
     error_message = None
     if request.method == 'POST':
